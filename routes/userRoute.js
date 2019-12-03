@@ -13,7 +13,6 @@ const users = require('../models/loginModel');
 router.get("/registration",(req,res)=>
 {
     res.render("userViews/registration");
-    //res.render("userViews/registration");
 });
 
 router.post("/registration",(req,res)=>
@@ -122,33 +121,29 @@ router.post('/log_in',(req,res)=>
     //newUsers.findOne({new_userEmail:formData.log_useremail}).then(newUsers=>console.log(newUsers));
 
     newUsers.findOne({new_userEmail:formData.log_useremail})
-    .then(newUsers=>
+    .then(thisUser=>
     {
-        if(newUsers == null){
+        if(thisUser == null){
             errors.push("Sorry user not found");
             res.render('userViews/log_in',{message:errors});
-            console.log(newUsers);
+            console.log(thisUser);
         }
-        else{
-            res.render('other/confirmation');
-            console.log(newUsers);
+        else
+        {
+            if(thisUser.new_userPass == formData.log_userpassword)
+            {
+                res.render('other/confirmation');
+                console.log(thisUser);
+                console.log(thisUser.new_userPass);
+            }else{
+                errors.push("PASSWORD IS WRONG");
+                res.render('userViews/log_in',{message:errors});
+            }
         }
     });
 
-
     
-//PRUEBAS
-/*
-console.log(formData);
-    console.log(formData.log_useremail);
-    console.log(formData.log_userpassword);
 
-    const pbUser= new users(formData); 
-    console.log(pbUser);
-    console.log(pbUser.log_useremail);
-    console.log(pbUser.log_userpassword);
-  */  
-//PRUEBAS END
    
     //PASSWORD VALIDATION HERE
 /*
@@ -174,6 +169,5 @@ console.log(formData);
 
 });
 
-
-
+//EXPORTING ROUTES
 module.exports=router;
