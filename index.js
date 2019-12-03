@@ -50,7 +50,7 @@ mongoose.connect(process.env.DBURL_RG,{useNewUrlParser:true})
 
 //CONNECTION
 //Creating server to connect at localhost:3000
-const PORT = process.env.PNBPORT | 5000;
+const PORT = process.env.PNBPORT | 3000;
 app.listen(PORT,()=>{
     console.log(`My Web server is connected in port ${PORT}`);
 });

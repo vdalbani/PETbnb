@@ -3,12 +3,11 @@ const express=require('express');
 const router = express.Router();
 const path = require("path");
 const mongoose = require('mongoose');
-//NOT SURE ABOUT THIS
-//const bodyParser = require('body-parser');
 
 //Importing modelUser.js
 const newUsers = require('../models/userModel');
-//user_model
+const users = require('../models/loginModel');
+
 //CREATING THE ROUTES
 //Route to direct use to Registration form
 router.get("/registration",(req,res)=>
@@ -73,52 +72,108 @@ router.post("/registration",(req,res)=>
         reg_errors.push('Please enter year')
     }
 
-
-    /*
-    if(req.new_userEmail== null){
-        reg_errors.push('2 worked');
-        console.log(reg_formData);
-        //console.log(reg_formData.new_userEmail);
-    }
-    */
-
-    //reg_errors.push('MESAJE DE PRUEBA');
+    //ERROR VALIDATION
     if(reg_errors.length > 0)
     {
          res.render("userViews/registration",{reg_message:reg_errors});
+    
     }else{
-        res.render("userViews/registration");
-        console.log("No reviso");
+      //  res.render("userViews/registration");
+        console.log("INFO PASSED SUCCESFULLY");
+        console.log(reg_formData);
         
         //res.redirect("/");
-        /*
-        const reg_formData=
-        {
-            new_userEmail: req.body.reg_email,
-            new_userName: req.body.firstname,
-            new_userLast: req.body.lastname,
-            new_userPass: req.body.fpassword,
-            new_userBDay: req.body.fDay,
-            new_userBMonth: req.body.fMonth,
-            new_userBYear: req.body.fYear
-    
-        };
        
         const pbNewUser= new newUsers(reg_formData);
 
         pbNewUser.save().then(()=>{console.log(`user inserted`)})
         .catch((err)=>{console.log(`Wrong because ${err}`)});
 
-        res.render('other/notification',{w_username:pbNewUser});
-        console.log(`USER ID =${pbNewUser} email: ${reg_formData.new_userEmail} name: ${reg_formData.new_userName} saved`);
-*/
+        //res.render('other/home',{w_username:pbNewUser});
+        //console.log(`USER ID =${pbNewUser} email: ${reg_formData.new_userEmail} name: ${reg_formData.new_userName} saved`);
+
+        //if sessions it should be here
+        res.render("homeViews/home");
     }
 });
 
+/********LOG IN ************* */
 //GETTING THE LOG IN VIEW ROUTE
-router.get('/log_in',(req,res)=>{
+router.get('/log_in',(req,res)=>
+{
     res.render('userViews/log_in');
 });
+
+router.post('/log_in',(req,res)=>
+{
+    const errors =[];
+
+    //FORM INCOMING INFORMATION
+    const formData=
+    {
+        log_useremail: req.body.log_email,
+        log_userpassword: req.body.log_password
+    };
+    //newUsers              is the model
+    //new_userEmail          is the name of the mongo field
+    //formData.log_useremail is the form parse
+
+    //WORKING LINE JUST COMMENTED
+    //newUsers.findOne({new_userEmail:formData.log_useremail}).then(newUsers=>console.log(newUsers));
+
+    newUsers.findOne({new_userEmail:formData.log_useremail})
+    .then(newUsers=>
+    {
+        if(newUsers == null){
+            errors.push("Sorry user not found");
+            res.render('userViews/log_in',{message:errors});
+            console.log(newUsers);
+        }
+        else{
+            res.render('other/confirmation');
+            console.log(newUsers);
+        }
+    });
+
+
+    
+//PRUEBAS
+/*
+console.log(formData);
+    console.log(formData.log_useremail);
+    console.log(formData.log_userpassword);
+
+    const pbUser= new users(formData); 
+    console.log(pbUser);
+    console.log(pbUser.log_useremail);
+    console.log(pbUser.log_userpassword);
+  */  
+//PRUEBAS END
+   
+    //PASSWORD VALIDATION HERE
+/*
+    if(errors.length > 0)
+    {
+        res.render("userViews/log_in",{message:errors});
+    }else{
+        res.render("userViews/log_in");
+    }
+    */
+    //const pbUser= new users(formData); 
+    //console.log(formData);
+    //res.render('other/confirmation');
+
+    /*
+        pbUser.save().then(()=>{console.log(`user inserted`)})
+        .catch((err)=>{console.log(`wrong because ${err}`)});
+
+        res.render('other/confirmation',{w_username:formData.log_useremail});
+
+        console.log(`USER ID =${pbUser} saved`);
+      */  
+
+});
+
 
 
 module.exports=router;
