@@ -1,0 +1,78 @@
+<body id ="bodyForm">
+  <!--This form is used to iterate through the
+message error that was injected -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="main_container">
+
+  <div class="empty_div">
+  </div>
+
+  <div class="container">
+
+
+    <form  action="/userViews/log_in" method="POST">
+
+      <h2 id="formTitle">LOG IN</h2>
+        {{#each message}}
+            <div class="errors">{{this}}</div>
+            
+       {{/each}}
+      <div class="row">
+        <div class="col-75">
+          <input type="email" id="fEmail" name="log_email" placeholder="Email address">
+        </div>
+      </div>
+
+      
+      
+      <div class="row">
+        <div class="col-75">
+          <input type="password" id="fpassword" name="log_password" placeholder="Password">
+        </div>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <div class="row">
+        <input type="submit" value="Log in">
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <div>
+        <p>
+          Do you have an account? <a href=""> Register here </a>
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="empty_div">
+  </div>
+
+</div>
+
+    <script src="script.js"></script>
+  </body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
