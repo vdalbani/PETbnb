@@ -30,10 +30,13 @@ app.use(bodyParser.urlencoded({extended:false}));
 //IMPORTING ROUTE OBJECTS
 const userRoutes = require("./routes/userRoute");
 const generalRoutes = require("./routes/generalRoute");
+const roomsRoutes = require("./routes/roomsRoute");
 
 //MAPPING ROUTES AFTER IMPORTING
 app.use('/', generalRoutes );
 app.use('/userviews', userRoutes);
+//IT MIGHT NIGHT ATTENTION
+app.use('/roomViews',roomsRoutes);
 
 
 //IMPORTING MONGO

@@ -1,0 +1,20 @@
+
+<!--AGREGAR NUEVOS AQUI-->
+new rooms will display here
+<section  class="row">
+
+{{#each insertRoom}}
+
+      <div id="s1_div1" class="column">
+        <div id="divCont1" class="divCont">
+           <img id="img1" class="img_responsive"src="../IMG/Room1.jpg" alt="Snow" >
+            <div class="stars"> &#11088;&#11088;&#11088; </div>
+            <div class="divTitle"><p>{{this.rTitle}}</p></div>
+            <div class="divDescr"><p> {{this.rDesc}}</p></div>
+            <div class="price">{{r.Price}} </div>
+        </div>
+      </div>
+{{/each}}
+       
+</section>
+

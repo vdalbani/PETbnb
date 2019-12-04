@@ -1,0 +1,134 @@
+
+    <form action="/roomViews/roomCreating" method="POST">
+        <h2>Let's set up your Listing</h2>
+         {{#each room_message}}
+            <div class="errors">{{this}}</div>  
+        {{/each}}
+
+        <div class="row">
+            <div class="col-75">
+            <input type="text" id="roomTitle" name="roomTitle" placeholder="Title">
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+        <div class="col-75">
+            <select name='roomType' id='roomType'>
+                        <option value="">Room Type</option>
+                        <option value='singleRoom'>Single Room</option>
+                        <option value='House'>Complete House</option>
+                        <option value='Apartament'>Complete Apartament</option>
+            </select>
+        </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-75">
+            <textarea id="roomDesc" name="roomDesc" placeholder="Description"></textarea>
+            </div>
+        </div>
+        <br>
+
+    <!--Creating the amenities  list-->
+        <div>
+            <h4 id="dateInfo">What amenities does it include?</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-75">
+            <label>WiFi Connection:</label>
+            &nbsp;&nbsp;
+            <label>YES</label>
+            <input type="radio" name="isWifi" id="yes" value="yes">
+            &nbsp;&nbsp; 
+            <label for="No">NO</label>
+            <input type="radio" name="isWifi" id="no" value="no"><br>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-75">
+            <label>Parking:</label>
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            <label>YES</label>
+            <input type="radio" name="isParking" id="yes" value="yes">
+                &nbsp;&nbsp;
+            <label for="No">NO</label>
+            <input type="radio" name="isParking" id="no" value="no"><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-75">
+            <label>Laudry:</label>
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+            <label>YES</label>
+            <input type="radio" name="isLaundry" id="yes" value="yes">
+            &nbsp;&nbsp; 
+            <label for="No">NO</label>
+            <input type="radio" name="isLaundry" id="no" value="no"><br>
+            </div>
+        </div>
+        
+        <div>
+            <h4 id="dateInfo">Location</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-75">
+            <input type="text" id="roomAddress" name="roomAddress" placeholder="Address">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-75">
+            <input type="text" id="roomCity" name="roomCity" placeholder="City">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-75">
+            <input type="text" id="roomPostal" name="roomPostal" placeholder="P.C.">
+            </div>
+        </div>
+
+        <div class="row">
+        <div class="col-75">
+            <select name='roomProvince' id='roomProvince'>
+                        <option value="">Province</option>
+                        <option value='ON'>ONTARIO</option>
+                        <option value='QB'>QUEBEC</option>
+                        <option value='BC'>BRITISH COLUMBIA</option>
+            </select>
+        </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-75">
+            <input type="text" id="roomPrice" name="roomPrice" placeholder="Pricing">
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-75">
+            <label>Photo</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-75">
+            <input type="file" name="roomPhoto" >
+            </div>
+        </div> 
+        <br>   
+
+    <!--SUBMITION BUTTON-->
+        <div class="row">
+            <input type="submit" value="Sign up">
+        </div>
+    </form>
