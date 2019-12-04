@@ -7,11 +7,12 @@ const newRoom = require('../models/roomsModel');
 
 //CREATING THE ROUTES
 //Route to direct use to Registration form
-
+/*
 router.get("/roomListing",(req,res)=>
 {
     res.render("roomViews/roomListing");
 });
+*/
 
 router.get("/roomCreating",(req,res)=>
 {
@@ -63,7 +64,6 @@ router.post("/roomCreating",(req,res)=>
 
     if(room_formData.rAddress =='' ||
         room_formData.rCity =='' ||
-        room_formData.rPostal=='' ||
         room_formData.rPostal=='')
     {
         room_errors.push('Please enter valid location');         
@@ -73,7 +73,7 @@ router.post("/roomCreating",(req,res)=>
     {
         room_errors.push('Please enter price');         
     }
-    
+
     if(room_errors.length > 0)
     {
         res.render("roomViews/roomCreating",{room_message:room_errors});
@@ -92,6 +92,19 @@ router.post("/roomCreating",(req,res)=>
 
 });
 
+//TRYING THE LISTING OF DOCS
+router.get("/roomListing",(req,res)=>
+{
+    newRoom.find((err, docs) =>
+      {
+          if(!err){
+              res.render('roomViews/roomListing',{list:docs});
+          }
+          else{
+              console.log(`Theres is an error retreiving list: ${err}`);
+          }
+    });
 
+});
 
 module.exports = router;
