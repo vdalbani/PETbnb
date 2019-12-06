@@ -13,14 +13,13 @@ mongoose.connect(process.env.DBURL_RG,{useNewUrlParser:true})
 .then(()=>{console.log(`RoomsDB is connected`)})
 .catch((err)=>{console.log(`error because of ${err}`)});
 
-
-//STATIC FILES
-app.use(express.static("public"));
-
 //Importing handlebars
 const exphbs = require('express-handlebars');
 app.engine ('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+
+//STATIC FILES
+app.use(express.static("public"));
 
 //Importing bodyParser
 const bodyParser=require('body-parser');
