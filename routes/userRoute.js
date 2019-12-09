@@ -8,6 +8,12 @@ const mongoose = require('mongoose');
 const newUsers = require('../models/userModel');
 const users = require('../models/loginModel');
 
+//creating fake users
+const fakeusers =[
+    {id:1, name: 'Alex', email: 'alex@gmail.com', password: '1'},
+    {id:2, name: 'Anna', email: 'anna@gmail.com', password: '1'},
+    {id:3, name: 'Marco', email: 'marco@gmail.com', password: '1'}
+]
 //CREATING THE ROUTES
 //Route to direct use to Registration form
 router.get("/registration",(req,res)=>
@@ -112,6 +118,7 @@ router.post("/registration",(req,res)=>
 //GETTING THE LOG IN VIEW ROUTE
 router.get('/log_in',(req,res)=>
 {
+   // req.session.userId =
     res.render('userViews/log_in');
 });
 
@@ -129,9 +136,6 @@ router.post('/log_in',(req,res)=>
     //new_userEmail          is the name of the mongo field
     //formData.log_useremail is the form parse
 
-    //WORKING LINE JUST COMMENTED
-    //newUsers.findOne({new_userEmail:formData.log_useremail}).then(newUsers=>console.log(newUsers));
-
     newUsers.findOne({new_userEmail:formData.log_useremail})
     .then(thisUser=>
     {
@@ -144,9 +148,20 @@ router.post('/log_in',(req,res)=>
         {
             if(thisUser.new_userPass == formData.log_userpassword)
             {
-                res.render('other/confirmation');
+               
+                //res.session.userId = thisUser;
+                req.session.userInfo=thisUser;
+                //res.render('homeViews/tempHome',{userId:myuser});
+                
+                //res.render('homeViews/home',{userId:thisUser});
+                //userId.push(thisUser);
+
+                res.render('userViews/userDashboard',{userId:thisUser});
                 console.log(thisUser);
                 console.log(thisUser.new_userPass);
+                //res.redirect('/homeViews/tempHome', {userId:myuser});
+                //res.render('other/confirmation',{ususario:req.session.userInfo});
+                
             }else{
                 errors.push("PASSWORD IS WRONG");
                 res.render('userViews/log_in',{message:errors});
@@ -173,13 +188,23 @@ router.post('/log_in',(req,res)=>
     /*
         pbUser.save().then(()=>{console.log(`user inserted`)})
         .catch((err)=>{console.log(`wrong because ${err}`)});
-
         res.render('other/confirmation',{w_username:formData.log_useremail});
-
         console.log(`USER ID =${pbUser} saved`);
       */  
 
 });
 
+router.get('/userDashboard',(req,res)=>
+{
+ res.render('userViews/userDashboard');
+});
+
+router.get('/logout',(req,res)=>{
+    //destroying the session
+    req.session.destroy();
+    res.render("userViews/log_in"); 
+
+    console.log('session destroyed');   
+});
 //EXPORTING ROUTES
 module.exports=router;
