@@ -9,14 +9,4 @@ router.get('/',(req,res)=>{
 });
 
 
-/*
-router.get('/',(req,res)=>{
-    //prueba
-    const {userId} = '123';
-    //const {userId} = req.session;
-    console.log(userId);
-    res.render('homeViews/tempHome',{uAutent:userId});
-})
-*/
-
 module.exports = router;

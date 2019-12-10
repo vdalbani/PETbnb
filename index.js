@@ -53,12 +53,24 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 
 //IMPORTING ROUTE OBJECTS
+
 const userRoutes = require("./routes/userRoute");
 const generalRoutes = require("./routes/generalRoute");
 const roomsRoutes = require("./routes/roomsRoute");
 
 //NEW SESSION SET UP
-app.use(session({secret:"This is my secret key. This should not be shown to everyone"}))
+//app.use(session({secret:"This is my secret key. This should not be shown to everyone"}))
+
+app.use(session({
+    
+    resave: false,
+    saveUninitialized: false,
+    secret:"This is my secret key. This should not be shown to everyone",
+    cookie:{
+        maxAge: 1000 * 60 * 60,
+        secure:true
+    }
+}));
 
 app.use((req,res,next)=>{
 

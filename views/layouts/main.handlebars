@@ -7,56 +7,8 @@
     <link href="/CSS/style.css" rel="stylesheet" type="text/css" />
   </head>
 <body>
-<!--
-  <nav id="navDiv" name="navigationDiv">
-    
-    <div id="div1" name="div1">    
-    </div>
 
-    <div id="div2" name="div2" >
-    </div>
-
-    <div id="div3" name="div3">
-        <div id="div3_1" name="div3_1">
-          <a href = '/'>Home</a>
-        </div>
-        <div id="div3_2" name="div3_2">
-           <a href = '/roomViews/roomListing'>Room Listing</a>
-           
-        </div>
-        <div id="div3_3" name="div3_4">
-          <a href = '/userViews/registration'>Register</a>
-          
-        </div>
-         <div id="div3_4" name="div3_4">
-          <a href = '/userViews/log_in'>Log in</a>
-          <br>
-          <a href = '/other/notification'>notification</a>
-          <br>
-          <a href = '/roomViews/roomCreating'>Room Creation</a>
-          <br>
-          <form method='post' action='/logout'>
-          <button>Logout btn</button>
-          </form>
-         
-      </div>
-
-    </div>
-  </nav>
--->
- <!--  <section>
-      {{#if userId}}
-
-    <p>WELCOME TO PETBNB DEAR {{userId.new_userName}}</p>
-    <br>
-    <P>{{userId.new_userEmail}}</P>
-    <p>it means it worked</p>
-    {{else}}
-    <a href = '/userViews/registration'>Register</a>
-    {{/if}}
-  <section> 
-    -->
-  <nav id="navDiv" name="navigationDiv">
+ <nav id="navDiv" name="navigationDiv">
   {{#if userId}}
   
     <div id="div1" name="div1">    
@@ -67,7 +19,7 @@
 
     <div id="div3" name="div3">
         <div id="div3_1" name="div3_1">
-          <a href = '/'>Home</a>
+          <a href = '/'>Welcome Home {{userId.new_userName}}</a>
         </div>
         <div id="div3_2" name="div3_2">
            <a href = '/roomViews/roomListing'>Room Listing</a>
@@ -79,8 +31,6 @@
         </div>
          <div id="div3_4" name="div3_4">
           <a href = 'logout'>Log out</a>
-          <br>
-          <p>WELCOME {{userId.new_userName}}</p>
       </div>
 
     </div>
@@ -94,16 +44,16 @@
 
     <div id="div3" name="div3">
         <div id="div3_1" name="div3_1">
-          <a href = '/'>Home</a>
+          
         </div>
         <div id="div3_2" name="div3_2"> 
-            <a href = '/userViews/registration'>Register</a>
+            <a href = '/'>Home</a>
         </div>
         <div id="div3_3" name="div3_4">
-          <a href = '/userViews/log_in'>Log in</a> 
+           <a href = '/userViews/registration'>Register</a>
         </div>
          <div id="div3_4" name="div3_4">
-           <p>it means out</p>
+           <a href = '/userViews/log_in'>Log in</a>
         </div>
     </div>
     {{/if}}

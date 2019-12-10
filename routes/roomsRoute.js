@@ -5,14 +5,7 @@ const mongoose = require('mongoose');
 
 const newRoom = require('../models/roomsModel');
 
-//CREATING THE ROUTES
-//Route to direct use to Registration form
-/*
-router.get("/roomListing",(req,res)=>
-{
-    res.render("roomViews/roomListing");
-});
-*/
+
 
 router.get("/roomCreating",(req,res)=>
 {
