@@ -9,28 +9,6 @@ const mongoose = require("mongoose");
 //NEW IMPORTING SESSION
 const session = require("express-session");
 
-/*WORKED BEFORE
-//IMPORTING SESSION
-
-const SESS_NAME = 'sid';
-const SESSION_LIFEONE = 1000 * 60 * 60;
-const NODE_ENV ='development';
-const IN_PROD = NODE_ENV === 'production';
-const SESS_SECRET = 'ssh!quiet,its_asecret';
-
-const session = require("express-session");
-
-app.use(session({
-    name: SESS_NAME,
-    resave: false,
-    saveUninitialized: false,
-    secret:SESS_SECRET,
-    cookie:{
-        maxAge: SESSION_LIFEONE,
-        secure:  IN_PROD
-    }
-}));
-*/
 
 //IMPORTING MONGO
 /***IMPORT MONGO HERE** */
@@ -65,7 +43,7 @@ app.use(session({
     
     resave: false,
     saveUninitialized: false,
-    secret:"This is my secret key. This should not be shown to everyone",
+    secret:process.env.MY_SECRET,
     cookie:{
         maxAge: 1000 * 60 * 60,
         secure:true
